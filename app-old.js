@@ -21,11 +21,12 @@ var editor = "";
 // Elements
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-var credits = document.getElementById("edited-by-title");
-var date = document.getElementById("date-title");
-var wordDisplay = document.getElementById("word-entry");
-var wordBank = document.getElementById("word-bank");
-var notification = document.getElementById("notification-box");
+var credits = document.getElementById("credits");
+var date = document.getElementById("todaysDate");
+var title = document.getElementById("spellingBeeTitle");
+var wordDisplay = document.getElementById("wordDisplay");
+var wordSubmission = document.getElementById("wordBank");
+var notification = document.getElementById("notification");
 
 var boxArray = [];
 var shuffleBoxArray = [];
@@ -80,7 +81,7 @@ var nytwords = [];
 // Points
 var points = 0;
 var nytpoints = 0;
-var pointCounter = document.getElementById("point-counter");
+var pointCounter = document.getElementById("pointCounter");
   
 
 
@@ -92,9 +93,9 @@ randomLetters();
 
 //Adds a new letter to the current guess
 function input(letter) {
-    string += boxArray[letter - 1].innerHTML;
-    wordDisplay.innerHTML = string;
+    string += letter;
     console.log(wordDisplay);
+    wordDisplay.innerHTML = string;
 }
 
 //Checks to see if submitted word contains more than 3 letters. 
@@ -155,9 +156,11 @@ function submitWord() {
     checkPangram = false;
     foundWords.push(string);
     foundWordsString += string;
+    console.log(nytwords);
     if(nyt){
         nytwords.push(string);
     }
+    console.log(nytwords);
     wordBank.innerHTML = foundWordsString;
     string = '';
     wordDisplay.innerHTML = string;
@@ -172,17 +175,14 @@ function calculateScore() {
     isPangram();
     
     if (string.length == 4) {
-        notification.innerHTML = '+1';
+        alert(`+1`);
         points += 1;
-        setTimeout(function(){ notification.innerHTML = "";}, 1000);
     } else if (checkPangram == true){
-        notification.innerHTML = `Pangram! +${string.length + 7}`;
+        alert(`Pangram! +${string.length + 7}`);
         points += string.length + 7;
-        setTimeout(function(){ notification.innerHTML = "";}, 1000);
     } else if (string.length > 4) {
-        notification.innerHTML = `+${string.length}`;
+        alert(`+${string.length}`);
         points += string.length; 
-        setTimeout(function(){ notification.innerHTML = "";}, 1000);
     }
     if(nyt){
         nytpoints = points;
@@ -214,36 +214,17 @@ function showScoringGuidelines() {
 
 function init() {
     var letters = letterArray;
+    console.log(boxArray);
     
-    boxArray[0].style.backgroundColor = "#f8dc24";
-    boxArray[0].innerHTML = letters[0];
-    
-    for (var i = 1; i < boxArray.length; i++) {
+    for (var i = 0; i < boxArray.length; i++) {
         boxArray[i].innerHTML = letters[i];
-        boxArray[i].style.backgroundColor = '#e8e4e4';
+        boxArray[i].style.backgroundColor = 'white';
+        if (letters[i] == requiredLetter) {
+            boxArray[i].style.backgroundColor = "gold";
+        }
     }   
     getDate();
     credits.innerHTML = editor;
-    wordDisplay.innerHTML = '';
-}
-
-function shuffle() {
-    var arrayNumber = 0;
-    //var letters = shuffleLetters.slice();
-    var boxValues = boxArray.slice();
-    var letters = letterArray.slice();
-    
-    boxValues[0].style.backgroundColor = "#f8dc24";
-    boxValues[0].innerHTML = letters[0];
-    letters.splice(0,1);
-    
-    for (var i = 1; i < boxValues.length; i++) {
-        arrayNumber = Math.floor(Math.random() * (letters.length));
-        boxValues[i].innerHTML = letters[arrayNumber];
-        
-        boxValues[i].style.backgroundColor = '#e8e4e4';
-        letters.splice(arrayNumber, 1);
-    }
 }
 
 function randomLetters() {
@@ -274,7 +255,6 @@ function randomLetters() {
         }
         console.log("done getting letters");
     }
-    
     console.log("checking for vowel");
     if(!letterArray.includes('A') &&
            !letterArray.includes('E') && 
@@ -287,7 +267,6 @@ function randomLetters() {
            }
     requiredLetter = letterArray[0];
     editor = "Randomly Generated Puzzle";
-    console.log("found random letters");
     findPossibleWords();
 }
 
@@ -302,6 +281,24 @@ function getDate() {
     date.innerHTML = todaysDate;
 }
 
+function shuffle() {
+    var arrayNumber = 0;
+    //var letters = shuffleLetters.slice();
+    var boxValues = boxArray.slice();
+    var letters = letterArray.slice();
+    
+    for (var i = 0; i < boxValues.length; i++) {
+        arrayNumber = Math.floor(Math.random() * (letters.length));
+        boxValues[i].innerHTML = letters[arrayNumber];
+        
+        boxValues[i].style.backgroundColor = 'white';
+        if (letters[arrayNumber] == requiredLetter) {
+            boxValues[i].style.backgroundColor = "gold";
+        }
+        letters.splice(arrayNumber, 1);
+    }
+}
+
 
 
 //Takes dictionary file and prunes it to smaller dictionary with 
@@ -313,7 +310,6 @@ function findPossibleWords() {
     var letters = letterArray;
     possibleWords = [];
     var tempPoints = 0;
-    var pangramExists;
         
         var lines = this.responseText.split('\n');
             for(var line = 0; line < lines.length; line++){
@@ -329,10 +325,7 @@ function findPossibleWords() {
                     ) {
                         letterCount = 99;
                     } else if (letterCount == temp.length - 2 && temp.includes(requiredLetter)) {
-                        var newWord = temp.slice(0, temp.length - 1);
-                        possibleWords.push(newWord);
-                        
-        
+                        possibleWords.push(temp.slice(0, temp.length - 1));
     
                         if (temp.length == 4) {
                             tempPoints += 1;
@@ -346,12 +339,14 @@ function findPossibleWords() {
                 }
             }
         console.log(possibleWords);
+        console.log("required letterrrrr" + requiredLetter);    
         scoringGuidelines = `Possible points: ${tempPoints}`;
         
-        if(possibleWords.length > 120) {
+        if(possibleWords.length > 50) {
             init();
         } else {
             randomLetters();
+            console.log("notenoughwords")
         }
 
 };
@@ -364,6 +359,7 @@ req.send();
 
 function scrape() {
     nyt = true;
+    console.log(nytwords);
     foundWords = nytwords.slice();
     foundWordsString = "";
     points = nytpoints;
@@ -375,6 +371,7 @@ function scrape() {
         } else {
             foundWordsString += ", " + foundWords[i];
         }
+        
     }
     
     
@@ -445,7 +442,6 @@ The reason this extension is required is to bypass the New York Times website's 
         
     } 
 };
-
 
 getLetters.open('GET', 'https://www.nytimes.com/puzzles/spelling-bee', 'false');
 getLetters.send();

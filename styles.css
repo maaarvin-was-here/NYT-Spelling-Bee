@@ -1,263 +1,312 @@
-
-button {
-    outline: none;
+html {
+    scroll-behavior: smooth;
 }
 
-#nytbutton {
-    margin-right: 10px;
-    right: 0;
-    top: 1vh;
-    margin-top: 0;
-    position: fixed;
-    width: 15vw;
-    height: 5vh;
-    font-family: trebuchet ms;
-    border-radius: 20px;
-    user-select: none;
-}
-
-#nytbutton:hover {
-    transform: scale(1.05);
-}
-#randombutton:hover {
-    transform: scale(1.05);
-}
-
-#randombutton {
-    margin-right: 10px;
-    right: 0;
-    top: 5vh;
-    margin-top: 2vh;
-    position: fixed;
-    width: 15vw;
-    height: 5vh;
-    font-family: trebuchet ms;
-    border-radius: 20px;
-    user-select: none;
-}
-.square {
-    border: 1px solid black;
-    height: 80px;
-    width: 80px;
-    background-color: white;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    //display: inline;
-    border-radius: 20px;
-    line-height: 80px;
-    font-size: 60px;
-    user-select: none;
-}
-
-.specialSquare {
-    border: 1px solid black;
-    height: 80px;
-    width: 80px;
-    background-color: gold;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    //display: inline;
-    border-radius: 20px;
-    line-height: 80px;
-    font-size: 60px;
-    user-select: none;
-}
-
-.hiddenSquare {
-    width: 5vw;
-}
-
-.hiddenRectangle {
-    width: 8vw;
-}
-
-.square:hover {
-    background-color: lightgrey;
-    transform: scale(1.1);
-}
-
-.specialSquare:hover {
-    background-color: lightgrey;
-    transform: scale(1.1);
-}
-
-.letter {
-    height: 80px;
-    margin-top: auto;
-    margin-bottom: auto;
-    vertical-align: middle;
-    line-height: 80px;
-    font-size: 70px;
-    user-select: none;
-}
-
-#siteInformation {
-    height: 100px;
-    background-color: lightgrey;
-    width: 101%;
-    margin-top: -8px;
-    margin-left: -8px;
-    margin-right: -8px;
-
-}
-
-@font-face {
-    font-family: karnak;
-    src: url(karnakpro-black.otf);
-}
-
-#titleSpacer {
-    display: inline-block;
-    width: 5px;
-}
-
-#titleBlock {
-    padding-top: 1.5%;
-    text-align: center;
-}
-
-
-#spellingBeeTitle {
-    display: inline-block;
-    text-align: center;
-    font-family: karnak;
-    font-weight: bold;
-    font-size: 30px;
-    margin: 0;
-}
-
-#todaysDate {
-    display: inline-block;
-    text-align: center;
-    margin: 0;
-    font-family: arial;
-    font-size: 20px;
-    margin: 0;
-}
-
-
-#notification {
-    height: 30px;
-    text-align: center;
-    padding-top: 10px;
-    margin-top: 0px;
-    font-family: arial;
-    font-size: 20px;
-    line-height: 20px;
-}
-
-#wordDisplay {
-    padding-top: 0px;
-    margin-top: 0px;
-    text-align: center;
-    line-height: 80px;
-    font-size: 70px;
-    height: 80px;
-    line-height: 80px;
-    font-family: arial;
-    margin-bottom: 40px;
-    
-}
-
-#credits {
-    text-align: center;
-    margin: 0;
-    margin-top: 8px;
-    font-family: arial;
-    font-size: 14px;    
-}
-
-
-table {
+body{
     width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+div{
+}
+
+#logo-section{
+    height: 64px;
+    width: 100%;
+    position: fixed;
+    background-color: white;
+    border-bottom: 2px solid lightgray;
+}
+
+#times-logo{
+    margin-top: 10px;
+    margin-left: 50px;
+    width: 200px;
+    height: 40px;
+    
+    display: inline-block;
+    
+    background-image: url(nyt-games-logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: eft;
+}
+
+#game-mode-button-section {
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+    width: 505px;
+    float: right;
+}
+
+.large-rectangle-button{
+    height: 40px;
+    width: 200px;
+    border-radius: 4px;
+    margin-right: 50px;
+    background-color: white;
+    border: 1px solid lightgray;
+    
+    font-size: 16px;
+    user-select: none;
+}
+
+.large-rectangle-button:hover {
+    background-color: lightgray;
+    transform: scale(1.05);
+}
+
+
+/*  Title Section   */
+
+#title-section{
+    padding-top: 64px;
+    height: 132px;
+    width: 100%;
+    border-bottom: 2px solid lightgray;
+    
+}
+
+#title-and-date-section{
+    padding-top: 40px;
+    padding-left: 50px;
+    display: grid;
+    grid-template-columns: 230px 200px;
+}
+
+#spelling-bee-title{
+    margin: 0;
+    
+    font-weight: bold;
+    font-size: 28px;
+    font-family: verdana;
+}
+
+#date-title{
+    margin: 0;
+    padding-top: 5px;
+    
+    display: table-cell;
+    vertical-align: top;
+    
+    font-size: 22px;
+    font-family: verdana;
+}
+
+#edited-by-title{
+    padding-left: 50px;
+    padding-top: 10px;
+    margin: 0;
+    width: 100%;
+    
+    font-family: verdana;
+    
+}
+
+
+/*      option bar section      */
+
+#option-bar-section{
+    height: 56px;
+    width: 100%;
+    border-bottom: 2px solid lightgray;
+}
+
+
+
+
+/*      main page       */
+
+#main-grid{
+    height: 670px;
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+}
+
+#letter-half{
+    background-color: white;
+    
+    width: 234px;
     margin-left: auto;
     margin-right: auto;
-    align-content: center;
+    margin-top: 50px;
+    
+    height: 400px;
+
+}
+
+#notification-box{
+    text-align: center;
+    
+    font-family: verdana;
+    height: 24px;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#word-entry{
+    height: 80px;
+    
+    text-align: center;
+    line-height: 80px;
+    font-size: 50px;
+    font-weight: bold;
+    
+    font-family: verdana;
     
 }
 
-.rectangle {
-    height: 60px;
-    width: 170px;
+
+#game-button-section{
+    width: 234px;
+    height: 100px;
+    
+    display: grid;
+    grid-template-columns: 85px 40px 85px;
+    grid-column-gap: 12px;
+    
+    margin-top: 35px;
+}
+
+.rectangle-button{
+    height: 40px;
+    width: 85px;
+    border-radius: 17px;
+    background-color: white;
+    border: 1px solid lightgray;
+    
+    font-size: 16px;
+    user-select: none;
+}
+
+.rectangle-button:hover {
+    background-color: lightgray;
+    transform: scale(1.05);
+}
+
+#shuffle-button{
+    background-image: url(shuffle-icon.png);
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.circle-button{
+    height: 40px;
+    width: 40px;
     border-radius: 20px;
     background-color: white;
-}
-
-.rectangle:hover {
-    background-color: lightgrey;
-    transform: scale(1.1);
-}
-
-#editButtons {
-    padding-top: 50px;
-}
-
-.buttonText {
-    font-size: 35px;
-    margin-top: auto;
-    margin-bottom: auto;
-    user-select: none;
-}
-
-
-.smallRectangle {
-    height: 30px;
-    width: 85px;
-    border-radius: 10px;
-    background-color: white;
-}
-
-.smallRectangle:hover {
-    // background-color: lightgrey;
-    transform: scale(1.1);
-}
-
-.smallButtonText {
-    margin-top: auto;
-    margin-bottom: auto;
-    font-size: 15px;
-    font-weight: bold;
-    user-select: none;
-}
-
-#pointCounter {
-    margin-top: auto;
-    margin-bottom: auto;
-    font-size: 15px;
-    font-weight: bold;
-    user-select: none;
-}
-
-#wordBankTitleCell {
-    width: 50%;
-}
-
-#clearButtonCell {
-    width: 50%;
-    padding-top: 20px;
-}
-
-
-#wordBankTitle {
-    padding-left: 15vw;
-    padding-top: 20px;
-    font-family: arial;
-    font-size: 19px;
-    text-decoration: underline;
     
+    border: 1px solid lightgray;
 }
 
-#wordBank {
-    padding-left: 10%;
-    padding-top: 10px;
-    font-family: arial;
-    font-size: 19px;    
+.circle-button:hover {
+    background-color: lightgray;
+    transform: scale(1.05);
+}
+
+
+/*      found words     */
+
+#found-words-half{
+    background-color: white;
+    padding-left: 50px;
+}
+
+#point-counter{
+    margin-top: 100px;
+    height: 30px;
+    font-family: verdana;
+}
+
+#word-bank-outline{
+    padding-top: 30px;
+    padding: 30px;
+    width: 400px;
+    height: 400px;
+    
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+}
+
+#word-bank{
+    
+    font-family: verdana;
+}
+
+
+/*      hexagon     */
+
+#letter-board{
+    width: 250px;
+    height: 300px
 }
 
 
 
+.hex {
+    float: left;
+    margin-right: -18px;
+    margin-bottom: -34.615px;
+}
 
+.hex .left {
+    float: left;
+    width: 0;
+    border-right: 22.5px solid #e8e4e4;
+    border-top: 39px solid transparent;
+    border-bottom: 39px solid transparent;
+}
+
+.hex .middle {
+    float: left;
+    width: 45px;
+    height: 78px;
+    background: #f8dc24;
+    
+    font-family: verdana;
+    font-weight: bolder;
+    font-size: 24px;
+    
+    user-select: none;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left.gold {
+    border-right-color: #f8dc24;
+}
+
+
+
+.hex .right {
+    float: left;
+    width: 0;
+    border-left: 22.5px solid #e8e4e4;
+    border-top: 39px solid transparent;
+    border-bottom: 39px solid transparent;
+}
+
+.right.gold {
+    border-left-color: #f8dc24;
+}
+
+.hex-row {
+    clear: left;
+}
+
+.hex.even {
+    margin-top: 42px;
+}
+
+.hex.invisible {
+    visibility: hidden;
+}
 
 

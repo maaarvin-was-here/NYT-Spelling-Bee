@@ -3,166 +3,109 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Spelling Bee</title>
+    <title>Spelling Bee - The New York Times</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="https://www.nytimes.com/games-assets/v2/metadata/sb-favicon.ico?v=v7.8.0"  type="image/x-icon">
     <link rel="search" href="newdict.txt" id="file" />
 </head>
 
 <body>
-    <article id="siteInformation">
-        <div id="titleBlock">
-            <p id="spellingBeeTitle">Spelling Bee</p>
-            <p id="titleSpacer"></p>
-            <p id="todaysDate"></p>
-            <button id="nytbutton" onclick="scrape()">Play the New York Times version</button>
-            <button id="randombutton" onclick="randomLetters()">Randomly Generate Letters</button>
+    
+    <div id="logo-section">
+        <div id="times-logo"></div>
+        <div id="game-mode-button-section">
+            <button class="large-rectangle-button" onclick="scrape()">New York Times Version</button>
+            <button class="large-rectangle-button" onclick="randomLetters()">Random Letters</button>
         </div>
-        
-        <div>
-            <p id="credits"></p>
+    </div>
+    <div id="title-section">
+        <div id="title-and-date-section">
+            <p id="spelling-bee-title">Spelling Bee</p>
+            <p id="date-title">Date</p>
         </div>
-    </article>
-    <article>
+        <p id="edited-by-title">Edited By </p>
+
+    </div>
+    <div id="option-bar-section">
+    
+    </div>
+    
+    <div id="main-grid">
         
-        <p id="notification"></p>
-    </article>
-    <article>
-        <p id="wordDisplay"></p>
-    </article>
-
-    <table id="letterBody">
-        <tr>
-            <th>
-                <article class="hiddenSquare"></article>
-            </th>
-            <th>
-                <article class="hiddenSquare"></article>
-            </th>
-            <th>
-                <button type="button" id="firstBox" class="square" onclick="input(textContent)">
-                    <p class="letter">
-                        
-                    </p>
-                </button>
-            </th>
-            <th>
-                <button class="square" id="secondBox" onclick="input(textContent)">
-                    <p class="letter">
-                        
-                    </p>
-                </button>
-            </th>
-            <th>
-                <button class="square" id="thirdBox" onclick="input(textContent)">
-                    <p class="letter">
-                        
-                    </p>
-                </button>
-            </th>
-            <th>
-                <button class="specialSquare" id="fourthBox" onclick="input(textContent)">
-                    <p class="letter">
-                        
-                    </p>
-
-                </button>
-            </th>
-            <th>
-                <button class="square" id="fifthBox" onclick="input(textContent)">
-                    <p class="letter">
-                        
-                    </p>
-                </button>
-            </th>
-            <th>
-                <button class="square" id="sixthBox" onclick="input(textContent)">
-                    <p class="letter">
-                        
-                    </p>
-                </button>
-            </th>
-            <th>
-                <button class="square" id="seventhBox" onclick="input(textContent)">
-                    <p class="letter">
-                        
-                    </p>
-                </button>
-            </th>
+        <div id="letter-half">
+            <div id="notification-box"></div>
+            <div id="word-entry"></div>
+            <div id="letter-board">
+                
+                <div class="hex-row">
+                    <div class="hex invisible">
+                        <div class="left"></div>
+                        <div class="middle"></div>
+                        <div class="right"></div>
+                    </div>
+                    <div class="hex even" onclick="input(3)">
+                        <div class="left"></div>
+                        <div class="middle" id="thirdBox"></div>
+                        <div class="right"></div>
+                    </div>
+                    <div class="hex invisible">
+                        <div class="left"></div>
+                        <div class="middle"></div>
+                        <div class="right"></div>
+                    </div>
+                </div>
+                <div class="hex-row">
+                    <div class="hex" onclick="input(2)">
+                        <div class="left"></div>
+                        <div class="middle" id="secondBox"></div>
+                        <div class="right"></div>
+                    </div>
+                    <div class="hex even" onclick="input(1)">
+                        <div class="left gold"></div>
+                        s<div class="middle" id="firstBox"></div>
+                        <div class="right gold"></div>
+                    </div>
+                    <div class="hex" onclick="input(4)">
+                        <div class="left"></div>
+                        <div class="middle" id="fourthBox"></div>
+                        <div class="right"></div>
+                    </div>
+                </div>
+                <div class="hex-row">
+                    <div class="hex" onclick="input(5)">
+                        <div class="left"></div>
+                        <div class="middle" id="fifthBox"></div>
+                        <div class="right"></div>
+                    </div>
+                    <div class="hex even" onclick="input(6)">
+                        <div class="left"></div>
+                        <div class="middle" id="sixthBox"></div>
+                        <div class="right"></div>
+                    </div>
+                    <div class="hex" onclick="input(7)">
+                        <div class="left"></div>
+                        <div class="middle" id="seventhBox"></div>
+                        <div class="right"></div>
+                    </div>
+                </div>
+            </div>
             
-            <th>
-                <article class="hiddenSquare"></article>
-            </th>
-            <th>
-                <article class="hiddenSquare"></article>
-            </th>
-        </tr>
-
-    </table>
-
-    <table id="editButtons">
-        <tr>
-            <th>
-                <article class="hiddenRectangle"></article>
-            </th>
-            <th>
-                <article class="hiddenRectangle"></article>
-            </th>
-            <th>
-                <button class="rectangle" onclick="checkLength()">
-                    <p class="buttonText">Submit</p>
-                </button>
-            </th>
-            <th>
-                <button class="rectangle" onclick="shuffle()">
-                    <p class="buttonText">Shuffle</p>
-                </button>
-            </th>
-            <th>
-                <button class="rectangle" onclick="deleteLetter()">
-                    <p class="buttonText">Delete</p>
-                </button>
-            </th>
-            <th>
-
-                <article class="hiddenRectangle"></article>
-            </th>
-            <th>
-                <article class="hiddenRectangle"></article>
-            </th>
-
-        </tr>
-
-    </table>
-    
-    <table>
-        <tr>
-            <th id="wordBankTitleCell">
-                <p id="wordBankTitle">Words you've found like a li'l genius</p>
-            </th>
-            <th>
-                <button class="smallRectangle" onclick="showScoringGuidelines()">
-                    <p id="pointCounter"></p>
-                </button>
-            </th>
-            <!--
-            <th id="clearButtonCell">
-                <button class="smallRectangle" onclick="clearBank()">
-                    <p class="smallButtonText">Clear</p>
-                </button>
-            </th>
-            -->
-        </tr>
-    </table>
-    
-    
-    <p id="wordBank"></p>
-
-    
+            <div id="game-button-section">
+                <button class="rectangle-button" onclick="deleteLetter()">Delete</button>
+                <button class="circle-button" id="shuffle-button" onclick="shuffle()"></button>
+                <button class="rectangle-button" onclick="checkLength()">Submit</button>
+            </div>
+        </div>
+        
+        <div id="found-words-half">
+            <div id="point-counter"></div>
+            <div id="word-bank-outline">
+                <div id="word-bank"></div>
+            </div>
+        </div>
+    </div>
 
 </body>
 <script type="text/javascript" src="app.js"></script>
-
-
 
 </html>
