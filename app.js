@@ -218,9 +218,13 @@ function init() {
     boxArray[0].style.backgroundColor = "#f8dc24";
     boxArray[0].innerHTML = letters[0];
     
-    for (var i = 1; i < boxArray.length; i++) {
+    for (var i = 0; i < boxArray.length; i++) {
         boxArray[i].innerHTML = letters[i];
-        boxArray[i].style.backgroundColor = '#e8e4e4';
+        if(i == 0){
+            boxArray[i].style.backgroundColor = "#f8dc24";
+        } else {
+            boxArray[i].style.backgroundColor = '#e8e4e4';
+        }
     }   
     getDate();
     credits.innerHTML = editor;
