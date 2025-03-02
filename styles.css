@@ -257,6 +257,10 @@ div{
     margin-bottom: -34.615px;
 }
 
+.hex:hover {
+    transform: scale(1.04);
+}
+
 .hex .left {
     float: left;
     width: 0;

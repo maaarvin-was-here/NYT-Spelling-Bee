@@ -314,51 +314,51 @@ function getDate() {
 function findPossibleWords() {
     var req = new XMLHttpRequest();
     req.onload = function(){
-    var letters = letterArray;
-    possibleWords = [];
-    var tempPoints = 0;
-    var pangramExists;
-        
-        var lines = this.responseText.split('\n');
-            for(var line = 0; line < lines.length; line++){
-                var temp = lines[line].toUpperCase();
-                for(var letterCount = 0; letterCount < temp.length; letterCount++) {
-                    if(temp.charAt(letterCount) != letters[0] &&
-                    temp.charAt(letterCount) != letters[1] &&
-                    temp.charAt(letterCount) != letters[2] &&
-                    temp.charAt(letterCount) != letters[3] &&
-                    temp.charAt(letterCount) != letters[4] &&
-                    temp.charAt(letterCount) != letters[5] &&
-                    temp.charAt(letterCount) != letters[6]
-                    ) {
-                        letterCount = 99;
-                    } else if (letterCount == temp.length - 2 && temp.includes(requiredLetter)) {
-                        var newWord = temp.slice(0, temp.length - 1);
-                        possibleWords.push(newWord);
-                        
-        
-    
-                        if (temp.length == 4) {
-                            tempPoints += 1;
-                        } else if (letterArray.every(letter => temp.includes(letter))){
-                            tempPoints += temp.length + 7;
-                        } else if (temp.length > 4) {
-                            tempPoints += temp.length; 
-                        }
-                    }
-                
-                }
-            }
-        console.log(possibleWords);
-        scoringGuidelines = `Possible points: ${tempPoints}`;
-        
-        if(possibleWords.length > 120) {
-            init();
-        } else {
-            randomLetters();
-        }
+        var letters = letterArray;
+        possibleWords = [];
+        var tempPoints = 0;
+        var pangramExists;
 
-};
+            var lines = this.responseText.split('\n');
+                for(var line = 0; line < lines.length; line++){
+                    var temp = lines[line].toUpperCase();
+                    for(var letterCount = 0; letterCount < temp.length; letterCount++) {
+                        if(temp.charAt(letterCount) != letters[0] &&
+                        temp.charAt(letterCount) != letters[1] &&
+                        temp.charAt(letterCount) != letters[2] &&
+                        temp.charAt(letterCount) != letters[3] &&
+                        temp.charAt(letterCount) != letters[4] &&
+                        temp.charAt(letterCount) != letters[5] &&
+                        temp.charAt(letterCount) != letters[6]
+                        ) {
+                            letterCount = 99;
+                        } else if (letterCount == temp.length - 2 && temp.includes(requiredLetter)) {
+                            var newWord = temp.slice(0, temp.length - 1);
+                            possibleWords.push(newWord);
+
+
+
+                            if (temp.length == 4) {
+                                tempPoints += 1;
+                            } else if (letterArray.every(letter => temp.includes(letter))){
+                                tempPoints += temp.length + 7;
+                            } else if (temp.length > 4) {
+                                tempPoints += temp.length; 
+                            }
+                        }
+
+                    }
+                }
+            console.log(possibleWords);
+            scoringGuidelines = `Possible points: ${tempPoints}`;
+
+            if(possibleWords.length > 120) {
+                init();
+            } else {
+                randomLetters();
+            }
+
+    };
 req.open('GET', './newdict.txt');
 req.send();
 
@@ -440,10 +440,10 @@ function scrape() {
             init();
             
         } else {
-            alert(`Your browser needs an extension that allows CORS to access NYT letters
-For CHROME and FIREFOX, install the "Allow CORS: Access-Cross-Allow-Origin" extension from Muyor for free 
+            alert(`Since NYT doesn't yet have a public games API, webscraping is the only method to get the official NYT letters.
 
-The reason this extension is required is to bypass the New York Times website's security which doesn't allow data transfer (in this case the letters) to an unrecognized domain. However, extensions are not subject to the same restrictions, so this extension is required to bypass the security of the website and access the letters
+The NYT server doesn't return any Allow-Cross-Allow-Origin headers, but it is possible to use an externsion ("Allow CORS: Access-Cross-Allow-Origin" extension from Muyor) to set this header to the server response for CHROME and FIREFOX
+
 `);
         }
         
